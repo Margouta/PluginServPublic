@@ -10,6 +10,7 @@ import fr.communaywen.core.credit.FeatureManager;
 import fr.communaywen.core.dreamdim.DimensionManager;
 import fr.communaywen.core.customitems.managers.CustomItemsManager;
 import fr.communaywen.core.economy.EconomyManager;
+import fr.communaywen.core.evenements.Data.EventsMansionManager;
 import fr.communaywen.core.friends.FriendsManager;
 import fr.communaywen.core.guideline.advancements.dream.DreamTabManager;
 import fr.communaywen.core.homes.world.DisabledWorldHome;
@@ -77,6 +78,7 @@ public class Managers {
     private HomeUpgradeManager homeUpgradeManager;
     private SettingsManager settingsManager;
     private DisabledWorldHome disabledWorldHome;
+    private EventsMansionManager mansondimManager;
 
     private FileConfiguration bookConfig;
     private FileConfiguration wikiConfig;
@@ -153,6 +155,7 @@ public class Managers {
         homeUpgradeManager = new HomeUpgradeManager(homesManagers, plugin);
         settingsManager = new SettingsManager(plugin);
         disabledWorldHome = new DisabledWorldHome(plugin);
+        mansondimManager = new EventsMansionManager(plugin);
 
         LevelsDataManager.setLevelsFile(levelsConfig, new File(plugin.getDataFolder(), "levels.yml"));
         LevelsDataManager.setLevelsFile(levelsConfig, new File(plugin.getDataFolder(), "levels.yml"));
@@ -163,6 +166,8 @@ public class Managers {
         homesManagers.loadHomes();
         homesManagers.loadHomeLimits();
         disabledWorldHome.loadConfig();
+        mansondimManager.init();
+
     }
 
     public void cleanup() {
