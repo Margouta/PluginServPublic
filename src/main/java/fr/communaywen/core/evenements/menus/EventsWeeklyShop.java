@@ -1,5 +1,8 @@
 package fr.communaywen.core.evenements.menus;
 
+import fr.communaywen.core.utils.constant.MessageManager;
+import fr.communaywen.core.utils.constant.MessageType;
+import fr.communaywen.core.utils.constant.Prefix;
 import org.bukkit.enchantments.Enchantment;
 import dev.lone.itemsadder.api.CustomStack;
 import dev.xernas.menulib.Menu;
@@ -79,12 +82,11 @@ public class EventsWeeklyShop extends Menu {
 
                     } else if (currencyItemType.equalsIgnoreCase("normal")){
 
-                        GiveItems(player, ItemStack.of(Material.valueOf(Items), maxItemsToGive));
+                        giveItems(player, ItemStack.of(Material.valueOf(Items), maxItemsToGive));
 
                     }
 
-
-                    player.sendMessage(ChatColor.GREEN + "Tu as reçu " + ChatColor.GREEN + maxItemsToGive + " objets !");
+                    MessageManager.sendMessageType(player,ChatColor.GREEN + "Tu as reçu " + ChatColor.GREEN + maxItemsToGive + " objets !", Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                 } else {
 
@@ -96,7 +98,7 @@ public class EventsWeeklyShop extends Menu {
 
                     } else if (currencyItemType.equalsIgnoreCase("normal") || currencyItemType.equalsIgnoreCase("single")){
 
-                        GiveItems(player, ItemStack.of(Material.valueOf(Items), 1));
+                        giveItems(player, ItemStack.of(Material.valueOf(Items), 1));
 
                     } else if (currencyItemType.equalsIgnoreCase("enchanted_book")){
 
@@ -113,13 +115,13 @@ public class EventsWeeklyShop extends Menu {
 
                     }
 
-                    player.sendMessage(ChatColor.GREEN + "Objet reçu !");
+                    MessageManager.sendMessageType(player,ChatColor.GREEN + "Objet reçu !", Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                 }
 
             } else {
 
-                player.sendMessage(ChatColor.RED + "Tu n'as pas assez de " + currencyMoneyName + " !");
+                MessageManager.sendMessageType(player, ChatColor.RED +  "Tu n'as pas assez de " + currencyMoneyName + " !", Prefix.HALLOWEEN, MessageType.ERROR, true);
                 player.closeInventory();
 
             }
@@ -128,7 +130,7 @@ public class EventsWeeklyShop extends Menu {
 
         } else {
 
-            player.sendMessage(ChatColor.DARK_RED + "Inventaire plein !");
+            MessageManager.sendMessageType(player, ChatColor.RED +  "Votre Inventaire est plein", Prefix.HALLOWEEN, MessageType.ERROR, true);
 
         }
 
@@ -226,7 +228,7 @@ public class EventsWeeklyShop extends Menu {
 
     }
 
-    private void GiveItems(Player player, ItemStack item){
+    private void giveItems(Player player, ItemStack item){
 
         int maxStackSize = 64;
         int amountToAdd = item.getAmount();
@@ -245,7 +247,7 @@ public class EventsWeeklyShop extends Menu {
 
             } else {
 
-                player.sendMessage("Votre inventaire est plein !");
+                MessageManager.sendMessageType(player, ChatColor.RED +  "Votre Inventaire est plein", Prefix.HALLOWEEN, MessageType.ERROR, true);
                 break;
 
             }

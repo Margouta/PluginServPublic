@@ -5,6 +5,9 @@ import fr.communaywen.core.credit.Collaborators;
 import fr.communaywen.core.credit.Credit;
 import fr.communaywen.core.credit.Feature;
 import fr.communaywen.core.evenements.menus.EventsMenus;
+import fr.communaywen.core.utils.constant.MessageManager;
+import fr.communaywen.core.utils.constant.MessageType;
+import fr.communaywen.core.utils.constant.Prefix;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,7 +43,7 @@ public class EventsCommand {
     @Description("active les évenements")
     public void StateOn(Player player){
         CommandState = 0;
-        player.sendMessage(ChatColor.GREEN + "Evenement Activer");
+        MessageManager.sendMessageType(player, ChatColor.GREEN + "Evenement Activer", Prefix.HALLOWEEN, MessageType.INFO, true);
         SaveState(CommandState);
     }
 
@@ -49,7 +52,7 @@ public class EventsCommand {
     @Description("désactive les évenements")
     public void StateOff(Player player){
         CommandState = 1;
-        player.sendMessage(ChatColor.GREEN + "Evenement Désactiver");
+        MessageManager.sendMessageType(player, ChatColor.GREEN + "Evenement Désactiver", Prefix.HALLOWEEN, MessageType.INFO, true);
         SaveState(CommandState);
     }
 
@@ -63,7 +66,7 @@ public class EventsCommand {
 
         } else {
 
-            player.sendMessage(ChatColor.RED + "Aucun évenement en cours revenez plus tard");
+            MessageManager.sendMessageType(player, ChatColor.RED +  "Aucun évenement en cours revenez plus tard", Prefix.HALLOWEEN, MessageType.ERROR, true);
 
         }
 
@@ -80,7 +83,7 @@ public class EventsCommand {
 
         } else {
 
-            player.sendMessage(ChatColor.RED + "Manoir indisponible en ce moment");
+            MessageManager.sendMessageType(player, ChatColor.RED +  "Le Manoir est indisponible pour le moment", Prefix.HALLOWEEN, MessageType.ERROR, true);
 
         }
 

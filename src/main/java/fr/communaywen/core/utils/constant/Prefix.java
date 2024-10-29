@@ -28,6 +28,7 @@ public enum Prefix {
     JUMP("§x§0§0§7§D§0§AJ§x§0§0§7§D§0§Au§x§2§C§A§3§0§0m§x§2§C§A§3§0§0p"),
     STAFF("§x§8§0§1§4§1§4S§x§F§F§0§0§2§3t§x§F§F§0§0§2§3a§x§F§F§0§0§2§3f§x§F§F§0§0§2§3f"),
     TPA("§x§0§8§6§5§0§0T§x§0§5§7§0§0§7P§x§0§2§7§B§0§DA"),
+    HALLOWEEN("§x§F§B§A§4§0§8H§x§F§C§9§9§1§0A§x§F§C§8§E§1§9l§x§F§D§8§2§2§1l§x§F§D§7§7§2§9o§x§F§E§6§C§3§1w§x§F§E§6§1§3§Ae§x§F§F§5§5§4§2e§x§F§F§4§A§4§An"),
 
     // Lucky Block's prefixes
     LUCKYBLOCK("§x§F§C§4§5§8§2L§x§F§C§5§C§9§2u§x§F§D§7§4§A§1c§x§F§D§8§B§B§1k§x§F§E§A§2§C§1y§x§F§E§B§9§D§0B§x§F§E§D§1§E§0l§x§F§F§E§8§E§Fo§x§F§F§F§F§F§Fc§x§F§F§F§F§F§Fk"),

@@ -5,6 +5,9 @@ import dev.xernas.menulib.Menu;
 import dev.xernas.menulib.utils.InventorySize;
 import dev.xernas.menulib.utils.ItemBuilder;
 import fr.communaywen.core.evenements.CandyType;
+import fr.communaywen.core.utils.constant.MessageManager;
+import fr.communaywen.core.utils.constant.MessageType;
+import fr.communaywen.core.utils.constant.Prefix;
 import lombok.Setter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
@@ -70,7 +73,7 @@ public class EventsBuyCandy extends Menu {
         Player player = (Player) event.getWhoClicked();
         ItemStack clickedItem = event.getCurrentItem();
 
-        if (clickedItem != null && clickedItem.getType() == Material.PAPER && clickedItem.getItemMeta().getDisplayName().equals(ChatColor.GOLD + "buy")) {
+        if (clickedItem != null && clickedItem.getType() == Material.PAPER && clickedItem.getItemMeta().getDisplayName().equals(ChatColor.GOLD + "buy") && player.getInventory().firstEmpty() != -1) {
 
             String currencyItemName = selectedCandyType.getMoney();
             String currencyMoneyName = selectedCandyType.getMoneyName();
@@ -87,25 +90,30 @@ public class EventsBuyCandy extends Menu {
                     removeItems(player, currencyItemName, maxItemsToGive * requiredAmountPerItem);
                     giveCustomItems(player, selectedCandyType.getItemName(), maxItemsToGive);
 
-                    player.sendMessage(ChatColor.GREEN + "Tu as reçu " + ChatColor.GREEN + maxItemsToGive + " objets !");
+                    MessageManager.sendMessageType(player,ChatColor.GREEN + "Tu as reçu " + ChatColor.GREEN + maxItemsToGive + " objets !", Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                 } else {
 
                     removeItems(player, currencyItemName, requiredAmountPerItem);
                     giveCustomItems(player, selectedCandyType.getItemName(), 1);
 
-                    player.sendMessage(ChatColor.GREEN + "Objet reçu !");
+                    MessageManager.sendMessageType(player,ChatColor.GREEN + "Objet reçu !", Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                 }
 
             } else {
 
-                player.sendMessage(ChatColor.RED + "Tu n'as pas assez de " + currencyMoneyName + " !");
+                MessageManager.sendMessageType(player, ChatColor.RED +  "Tu n'as pas assez de " + currencyMoneyName + " !", Prefix.HALLOWEEN, MessageType.ERROR, true);
                 player.closeInventory();
 
             }
 
             event.setCancelled(true);
+
+        } else {
+
+            MessageManager.sendMessageType(player, ChatColor.RED +  "Votre Inventaire est plein ou une erreur est survenu", Prefix.HALLOWEEN, MessageType.ERROR, true);
+
         }
 
     }

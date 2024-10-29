@@ -4,6 +4,9 @@ import dev.xernas.menulib.Menu;
 import dev.xernas.menulib.utils.InventorySize;
 import dev.xernas.menulib.utils.ItemBuilder;
 import fr.communaywen.core.evenements.EventsCommand;
+import fr.communaywen.core.utils.constant.MessageManager;
+import fr.communaywen.core.utils.constant.MessageType;
+import fr.communaywen.core.utils.constant.Prefix;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -102,35 +105,35 @@ public class EventsFloorMenu extends Menu {
 
         if (clickedItem.getDisplayName().equals(ChatColor.GREEN + "Etage 1 : l'entrée")){
 
-            player.sendMessage("tp au 1er étage");
+            MessageManager.sendMessageType(player, "tp au 1er étage", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
             Location floor = new Location(player.getWorld(),26.5, 104, 6.5);
             player.teleport(floor);
 
         } else if (clickedItem.getDisplayName().equals(ChatColor.GREEN + "Etage 2 : L'étage")){
 
-            player.sendMessage("tp au 2e étage");
+            MessageManager.sendMessageType(player, "tp au 2e étage", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
             Location floor = new Location(player.getWorld(),30.5, 104, 200.5);
             player.teleport(floor);
 
         } else if (clickedItem.getDisplayName().contains(ChatColor.GREEN + "Etage 3 : L'étage" )){
 
-            player.sendMessage("tp au 3e étage");
+            MessageManager.sendMessageType(player, "tp au 3e étage", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
             Location floor = new Location(player.getWorld(),7.5, 104, 400.5);
             player.teleport(floor);
 
         } else if (clickedItem.getDisplayName().equals(ChatColor.GREEN + "Etage 4 : L'étage de l'éffroi")){
 
-            player.sendMessage("tp au 4e étage");
+            MessageManager.sendMessageType(player, "tp au 4e étage", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
             Location floor = new Location(player.getWorld(),7.5, 104, 600.5);
             player.teleport(floor);
 
         } else if (clickedItem.getDisplayName().contains(ChatColor.GREEN + "Etage §kl§r" + ChatColor.GREEN + " : Le §kGrenier§r ")){
 
-            player.sendMessage("tp au §ke§re étage");
+            MessageManager.sendMessageType(player, "tp au §ke§re étage", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
             Location floor = new Location(player.getWorld(),7.5, 104, 800.5);
             player.teleport(floor);

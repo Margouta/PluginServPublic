@@ -55,7 +55,7 @@ public class DataTime {
         int itemTypeIndex = random.nextInt(WeeklyItemType.values().length);
 
         currentWeeklyItemType = WeeklyItemType.values()[itemTypeIndex];
-        //debug a retirer plus tard ou pas
+        //A laisser au final
         Bukkit.getConsoleSender().sendMessage("Le WeeklyItemType a été changé en : " + currentWeeklyItemType.getItemName());
 
         saveState(timeLeft);

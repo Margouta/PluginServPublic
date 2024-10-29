@@ -5,6 +5,9 @@ import dev.lone.itemsadder.api.Events.FurnitureInteractEvent;
 import fr.communaywen.core.AywenCraftPlugin;
 import fr.communaywen.core.evenements.LootboxCustomLoots;
 import fr.communaywen.core.utils.Transaction;
+import fr.communaywen.core.utils.constant.MessageManager;
+import fr.communaywen.core.utils.constant.MessageType;
+import fr.communaywen.core.utils.constant.Prefix;
 import fr.communaywen.core.utils.database.TransactionsManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -36,7 +39,7 @@ public class InteractLootbox implements Listener {
 
                 if (player.getInventory().firstEmpty() == -1){
 
-                    player.sendMessage(ChatColor.RED + "Votre inventaire est plein ! Veuillez libérer de l'espace pour utiliser cet objet.");
+                    MessageManager.sendMessageType(player,ChatColor.RED + "Votre inventaire est plein ! Veuillez libérer de l'espace pour utiliser la lootbox", Prefix.HALLOWEEN, MessageType.ERROR, true);
 
                 } else {
 
@@ -91,7 +94,7 @@ public class InteractLootbox implements Listener {
                         } else if (chance >=126 && chance <=150){
 
                             this.RewardType = 1;
-                            Items = Material.DIAMOND;
+                            Items = Material.EMERALD;
 
                         }else if (chance >=151 && chance <=175){
 
@@ -130,18 +133,18 @@ public class InteractLootbox implements Listener {
 
                         }
 
-                        int amount = customItems.getAmount();
-
                         if (RewardType == 0){
 
+                            int amount = customItems.getAmount();
                             ItemStack itemStack = customItems.getItemStack();
                             player.getInventory().addItem(itemStack.asQuantity(amount));
                             player.sendMessage(ChatColor.GREEN + "objet reçu :" + ChatColor.GREEN + itemStack.getDisplayName());
+                            MessageManager.sendMessageType(player,ChatColor.GREEN + "objet reçu :" + ChatColor.GREEN + itemStack.getDisplayName(), Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                         } else if (RewardType == 1){
 
-                            player.getInventory().addItem(ItemStack.of(Items).asQuantity(amount));
-                            player.sendMessage(ChatColor.GREEN + "objet reçu :" + Items);
+                            player.getInventory().addItem(ItemStack.of(Items));
+                            MessageManager.sendMessageType(player,ChatColor.GREEN + "objet reçu :" + Items, Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                         } else if (RewardType == 2){
 
@@ -153,13 +156,13 @@ public class InteractLootbox implements Listener {
                                     "Quest Reward"
                             ));
 
-                            player.sendMessage(ChatColor.GREEN + " money reçu :" + Money);
+                            MessageManager.sendMessageType(player,ChatColor.GREEN + " money reçu :" + Money, Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                         }
 
                     } else {
 
-                        player.sendMessage(ChatColor.RED + "Vous devez tenir une clée halloween en main pour utiliser la lootbox");
+                        MessageManager.sendMessageType(player,ChatColor.RED + "Vous devez tenir une clée halloween en main pour utiliser la lootbox", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
                     }
 
@@ -167,7 +170,7 @@ public class InteractLootbox implements Listener {
 
             } else {
 
-                player.sendMessage(ChatColor.RED + "Vous devez tenir une clée halloween en main pour utiliser la lootbox");
+                MessageManager.sendMessageType(player,ChatColor.RED + "Vous devez tenir une clée halloween en main pour utiliser la lootbox", Prefix.HALLOWEEN, MessageType.WARNING, true);
 
             }
 
