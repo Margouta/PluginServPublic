@@ -106,7 +106,7 @@ public class QuestsListener implements Listener {
     @EventHandler
     public void onEntityKill(EntityDeathEvent event) {
 
-    EnumSet<EntityType> MansionEntities = EnumSet.of(EntityType.ZOMBIE_VILLAGER, EntityType.SKELETON, EntityType.SPIDER, EntityType.CAVE_SPIDER, EntityType.WITHER_SKELETON, EntityType.VINDICATOR, EntityType.WITCH);
+    EnumSet<EntityType> mansionEntities = EnumSet.of(EntityType.ZOMBIE_VILLAGER, EntityType.SKELETON, EntityType.SPIDER, EntityType.CAVE_SPIDER, EntityType.WITHER_SKELETON, EntityType.VINDICATOR, EntityType.WITCH);
 
         Player player = event.getEntity().getKiller();
         World customWorld = Bukkit.getWorld("Mansion");
@@ -120,7 +120,7 @@ public class QuestsListener implements Listener {
             }
         }else if (event.getEntity().getType().equals(EntityType.ZOMBIE)){
             QuestsManager.manageQuestsPlayer(player.getUniqueId(), QUESTS.KILL_ZOMBIE, 1, "zombie tué.");
-        }else if (player.getWorld().equals(customWorld) && MansionEntities.contains(event.getEntity().getType())){
+        }else if (player.getWorld().equals(customWorld) && mansionEntities.contains(event.getEntity().getType())){
             QuestsManager.manageQuestsPlayer(player.getUniqueId(), QUESTS.KILL_MOB_MANSION, 1, "monstre tué.");
         }
     }

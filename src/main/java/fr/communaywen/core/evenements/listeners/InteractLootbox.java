@@ -46,7 +46,7 @@ public class InteractLootbox implements Listener {
                     if (itemId.equals("halloween_key")){
 
                         LootboxCustomLoots customItems = null;
-                        Material Items = null;
+                        Material items = null;
 
                         Random r = new Random();
                         int chance = r.nextInt(201);
@@ -89,12 +89,12 @@ public class InteractLootbox implements Listener {
                         }else if (chance >=101 && chance <=125){
 
                             this.RewardType = 1;
-                            Items = Material.DIAMOND;
+                            items = Material.DIAMOND;
 
                         } else if (chance >=126 && chance <=150){
 
                             this.RewardType = 1;
-                            Items = Material.EMERALD;
+                            items = Material.EMERALD;
 
                         }else if (chance >=151 && chance <=175){
 
@@ -143,8 +143,8 @@ public class InteractLootbox implements Listener {
 
                         } else if (RewardType == 1){
 
-                            player.getInventory().addItem(ItemStack.of(Items));
-                            MessageManager.sendMessageType(player,ChatColor.GREEN + "objet reçu :" + Items, Prefix.HALLOWEEN, MessageType.SUCCESS, true);
+                            player.getInventory().addItem(ItemStack.of(items));
+                            MessageManager.sendMessageType(player,ChatColor.GREEN + "objet reçu :" + items, Prefix.HALLOWEEN, MessageType.SUCCESS, true);
 
                         } else if (RewardType == 2){
 
