@@ -20,7 +20,7 @@ public class RandomEventsCommand {
     }
 
     @Command("events")
-    @Description("Ouvre le menu des évènements aléatoires")
+    @Description("Ouvre le menu des fr.communaywen.core.évènements aléatoires")
     public void adminShop(Player player) {
         RandomEventsMenu menu = new RandomEventsMenu(player, plugin);
         menu.open();

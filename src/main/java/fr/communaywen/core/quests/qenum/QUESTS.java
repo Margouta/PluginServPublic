@@ -23,7 +23,8 @@ public enum QUESTS {
     MONEY_500K(Material.DIAMOND_BLOCK, new int[]{500000}, TYPE.MONEY, "Devient Elon", "$", REWARD.ITEMS, new int[]{1}, new ItemStack(Material.NETHERITE_INGOT)),
     HOLY_BREAD(Material.BREAD, new int[]{1}, TYPE.FISH, "Le pain sacré", "relique du pain sacré pendant l'event \"Pêche miraculeuse\"", REWARD.ITEMS, new int[]{16}, new ItemStack(Material.DIAMOND_ORE)),
     SAVE_THE_EARTH(Material.OAK_SAPLING, new int[]{10, 40, 100, 1000}, TYPE.PLACE, "Sauvons la planète !", "arbres et les faire grandir avec des poudres d'os", REWARD.ITEMS, new int[]{32, 64, 128, 256}, new ItemStack(Material.OAK_LOG)),
-    CRAFT_ELEVATOR(Material.PAPER, new int[]{2, 8, 24}, TYPE.CRAFT, "Dépasse tous les niveaux !", "élévateur", REWARD.MONEY, new int[]{200, 400, 800}),;
+    CRAFT_ELEVATOR(Material.PAPER, new int[]{2, 8, 24}, TYPE.CRAFT, "Dépasse tous les niveaux !", "élévateur", REWARD.MONEY, new int[]{200, 400, 800}),
+    KILL_MOB_MANSION(Material.JACK_O_LANTERN,new int[]{20, 100, 350, 900}, TYPE.KILL, "Chasseur de phantom !","Tuer des Monstres dans le Manoir", REWARD.MONEY, new int[]{2000, 3000, 5000, 10000}),;
 
     @Getter
     private final Material material;

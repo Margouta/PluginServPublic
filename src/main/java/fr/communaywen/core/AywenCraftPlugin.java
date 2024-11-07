@@ -35,11 +35,18 @@ import fr.communaywen.core.commands.utils.*;
 
 import fr.communaywen.core.contest.listeners.*;
 import fr.communaywen.core.customitems.listeners.*;
+import fr.communaywen.core.evenements.EventsCommand;
 import fr.communaywen.core.listeners.*;
 
 import fr.communaywen.core.contest.managers.ContestManager;
 import fr.communaywen.core.customitems.commands.ShowCraftCommand;
+import fr.communaywen.core.customitems.listeners.CIBreakBlockListener;
+import fr.communaywen.core.customitems.listeners.CIEnchantListener;
+import fr.communaywen.core.customitems.listeners.CIPrepareAnvilListener;
 import fr.communaywen.core.elevator.ElevatorListener;
+import fr.communaywen.core.evenements.Data.DataTime;
+import fr.communaywen.core.evenements.WeeklyItemType;
+import fr.communaywen.core.evenements.menus.EventsWeeklyShop;
 import fr.communaywen.core.fallblood.BandageRecipe;
 import fr.communaywen.core.friends.commands.FriendsCommand;
 import fr.communaywen.core.homes.world.DisabledWorldHome;
@@ -47,6 +54,7 @@ import fr.communaywen.core.homes.Home;
 import fr.communaywen.core.homes.HomesManagers;
 import fr.communaywen.core.levels.LevelsCommand;
 import fr.communaywen.core.levels.LevelsListeners;
+import fr.communaywen.core.listeners.*;
 import fr.communaywen.core.luckyblocks.commands.LuckyBlockCommand;
 import fr.communaywen.core.luckyblocks.listeners.*;
 import fr.communaywen.core.mailboxes.MailboxCommand;
@@ -298,6 +306,7 @@ public final class AywenCraftPlugin extends JavaPlugin {
         }));
 
         this.handler.register(
+                new EventsCommand(this),
                 new LeaderboardCommand(this, jumpManager),
                 new SettingsCommand(this),
                 new HeadCommand(this),
@@ -461,6 +470,20 @@ public final class AywenCraftPlugin extends JavaPlugin {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        saveDefaultConfig();
+
+        String savedWeeklyItem = getConfig().getString("weekly-item", WeeklyItemType.LUCKY_BLOCK.name());
+        WeeklyItemType weeklyItemType = WeeklyItemType.valueOf(savedWeeklyItem);
+        Bukkit.getConsoleSender().sendMessage("Le WeeklyItemType a été charger : " + getConfig().getString("weekly-item"));
+
+        int savedTimeLeft = getConfig().getInt("time-left", 1200);
+        EventsCommand.CommandState = getConfig().getInt("Halloween State ( on = 0 / off = 1 )");
+
+        EventsWeeklyShop weeklyShop = new EventsWeeklyShop(null);
+
+        DataTime dataTime = new DataTime(this, weeklyShop, weeklyItemType, savedTimeLeft);
+        dataTime.start();
 
     }
 

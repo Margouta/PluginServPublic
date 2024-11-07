@@ -7,6 +7,7 @@ import fr.communaywen.core.quests.qenum.QUESTS;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -28,6 +29,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
+import java.util.EnumSet;
 
 
 public class QuestsListener implements Listener {
@@ -103,7 +105,11 @@ public class QuestsListener implements Listener {
 
     @EventHandler
     public void onEntityKill(EntityDeathEvent event) {
+
+    EnumSet<EntityType> mansionEntities = EnumSet.of(EntityType.ZOMBIE_VILLAGER, EntityType.SKELETON, EntityType.SPIDER, EntityType.CAVE_SPIDER, EntityType.WITHER_SKELETON, EntityType.VINDICATOR, EntityType.WITCH);
+
         Player player = event.getEntity().getKiller();
+        World customWorld = Bukkit.getWorld("Mansion");
         if (player == null) return;
         if (event.getEntity().getType().equals(EntityType.WARDEN)) {
             QuestsManager.manageQuestsPlayer(player.getUniqueId(), QUESTS.KILL_WARDENS, 1, "warden tué");
@@ -114,6 +120,8 @@ public class QuestsListener implements Listener {
             }
         }else if (event.getEntity().getType().equals(EntityType.ZOMBIE)){
             QuestsManager.manageQuestsPlayer(player.getUniqueId(), QUESTS.KILL_ZOMBIE, 1, "zombie tué.");
+        }else if (player.getWorld().equals(customWorld) && mansionEntities.contains(event.getEntity().getType())){
+            QuestsManager.manageQuestsPlayer(player.getUniqueId(), QUESTS.KILL_MOB_MANSION, 1, "monstre tué.");
         }
     }
 
